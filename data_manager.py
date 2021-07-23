@@ -61,23 +61,23 @@ def get_data_from_db(lang_name: str) -> list:
 
 
 # # -----データベースをリセットして作り直す時の記述-----
-db.drop_all()
-print("database dropped")
-db.create_all()
+# db.drop_all()
+# print("database dropped")
+# db.create_all()
 
 
 # # ------------CSVデータをデータベースに移行する記述---------------------
-def append_word_data_to_db(lang_list: list):
-    for lang in lang_list:
-        word_list = get_data(lang)
-        for word_dict in word_list:
-            db_row = Word()
-            db_row.lang_name = lang
-            db_row.word = word_dict[lang]
-            db_row.japanese = word_dict["ja"]
-            db.session.add(db_row)
-            db.session.commit()
-        print(f"Successfully Added {lang} to the Database.")
+# def append_word_data_to_db(lang_list: list):
+#     for lang in lang_list:
+#         word_list = get_data(lang)
+#         for word_dict in word_list:
+#             db_row = Word()
+#             db_row.lang_name = lang
+#             db_row.word = word_dict[lang]
+#             db_row.japanese = word_dict["ja"]
+#             db.session.add(db_row)
+#             db.session.commit()
+#         print(f"Successfully Added {lang} to the Database.")
 
 
 # append_word_data_to_db(["en", "fr", "zh", "es", "ko"])
