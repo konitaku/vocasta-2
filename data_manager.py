@@ -1,8 +1,13 @@
 import pandas as pd
-# from pprint import pprint
 from vocasta import db
 from flask_login import UserMixin
 from datetime import datetime
+import sqlite3
+
+# database = sqlite3.connect("vocasta.db")
+# df = pd.read_sql_query("SELECT*FROM word", database)
+# database.close()
+# df.to_csv("word.csv", index=False)
 
 
 class StudyLog(db.Model):
@@ -56,7 +61,8 @@ def get_data_from_db(lang_name: str) -> list:
 
 
 # # -----データベースをリセットして作り直す時の記述-----
-# db.drop_all()
+db.drop_all()
+print("database dropped")
 db.create_all()
 
 
@@ -75,27 +81,4 @@ def append_word_data_to_db(lang_list: list):
 
 
 # append_word_data_to_db(["en", "fr", "zh", "es", "ko"])
-# ---------------------------------------------------------------
-
-# ---------------- 学習記録をつけるときのサンプルコード -----------------
-# https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#association-pattern
-# user = User()
-# user.name = "Takuma"
-# user.email = "example@email.com"
-# user.password = "password"
-# db.session.add(user)
-# db.session.commit()
-#
-# ユーザーオブジェクトのremembered_wordsプロパティに対象のWordオブジェクトをappend
-# user.remembered_words.append(Word.query.get(10))
-# db.session.commit()
-# --------------------------------------------------------------
-# ---------------- ユーザーの学習記録を取り出すサンプルコード --------------------
-# user = User.query.get(1)
-# for word in user.remembered_words:
-#     if word.lang_name == "en":
-#         print(word.lang_name)
-#         print(word.word)
-# >> en
-# >> he
 # ---------------------------------------------------------------

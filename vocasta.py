@@ -7,7 +7,6 @@ from flask_login import LoginManager, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
 from functools import wraps
-import psycopg2
 
 
 app = Flask(__name__)
