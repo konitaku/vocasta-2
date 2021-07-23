@@ -7,6 +7,7 @@ from datetime import datetime
 
 class StudyLog(db.Model):
     __tablename__ = 'study_log'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     word_id = db.Column(db.Integer, db.ForeignKey('word.id'))
@@ -19,6 +20,7 @@ class StudyLog(db.Model):
 
 class User(UserMixin, db.Model):
     __tablename__ = 'user'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(300), unique=True, nullable=False)
@@ -28,6 +30,7 @@ class User(UserMixin, db.Model):
 
 class Word(db.Model):
     __tablename__ = 'word'
+    __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True)
     lang_name = db.Column(db.String(5), nullable=False)
     word = db.Column(db.String(50), nullable=False)
