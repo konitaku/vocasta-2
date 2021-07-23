@@ -142,18 +142,13 @@ def inspect_words(lang: str, index: str):
 @app.route("/quiz/<lang>/<index>")
 def quiz(lang: str, index: str):
     # get_data_from_dbをインポート
-    from data_manager import get_data_from_db, append_word_data_to_db
+    from data_manager import get_data_from_db
 
     # リンクの第一引数がおかしかったらホームにリダイレクト
     if not (lang in LANG_LIST):
         return redirect(url_for("home"))
 
-    # 単語の全データを取得
-    try:
-        word_list = get_data_from_db(lang)
-    except FileNotFoundError:
-        append_word_data_to_db(LANG_LIST)
-        word_list = get_data_from_db(lang)
+    word_list = get_data_from_db(lang)
 
     # 問題数の分だけキリトリ
     word_from = int(index.split("-")[0])
