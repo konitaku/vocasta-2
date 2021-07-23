@@ -1,1 +1,1 @@
-web: gunicorn vocasta: app
+web: gunicorn vocasta:app --log-file -
