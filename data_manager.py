@@ -1,6 +1,6 @@
 import pandas as pd
 # from pprint import pprint
-from app import db
+from vocasta import db
 from flask_login import UserMixin
 from datetime import datetime
 
@@ -95,4 +95,4 @@ def append_word_data_to_db(lang_list: list):
 #         print(word.word)
 # >> en
 # >> he
-# --------------------------------------------------------------
+# ---------------------------------------------------------------
