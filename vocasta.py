@@ -83,7 +83,7 @@ def duration_int_to_date(days: int) -> str:
 def load_user(user_id):
     from data_manager import User
     user = User.query.get(user_id)
-    print(user.name)
+    # print(user.name)
     return user
 
 
