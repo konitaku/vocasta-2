@@ -536,34 +536,34 @@ span.project-logo {
     padding-top: 5rem;
 }
 .create-account-btn {
-    /* width: calc(100% - 2rem); */
     display: block;
     margin: 1rem auto;
     border-radius: 9999px;
     height: 48px;
-    background-color: #FC5185;
-    border-color: #FC5185;
+    /* background-color: #FC5185;
+    border-color: #FC5185; */
 }
 .create-account-btn:hover {
-    /* background-color: rgba(252,81,133, 30%); */
-    background-color: #db2e6b;
-    border-color: #db2e6b;
+    /* background-color: #db2e6b;
+    border-color: #db2e6b; */
 }
 .login-btn {
-    /* width: calc(100% - 2rem); */
     display: block;
     margin: 0 auto;
     border-radius: 9999px;
     height: 48px;
-    background-color: transparent;
-    border-color: #FC5185;
-    color: #FC5185;
+    /* background-color: transparent; */
+    /* border-color: #FC5185;
+    color: #FC5185; */
     margin-bottom: 1rem;
 }
 .login-btn:hover {
-    background-color: rgba(252,81,133, 30%);
-    border-color: #FC5185;
-    /* box-shadow: 2px 2px 1px 1px #FC5185 inset, -2px -2px 1px 1px #FC5185 inset; */
+    /* background-color: rgba(252,81,133, 30%);
+    border-color: #FC5185; */
+}
+
+.main-section {
+    padding-top: 1rem;
 }
 
 /* ----------------------- メディアクエリ モバイル ------------------------ */

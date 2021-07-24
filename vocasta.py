@@ -16,7 +16,8 @@ if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY",
+                                          "~\x0fB\x98\xd2Pi\x91\xb2{\xe8S\x93\xaf\x10\x06\xccCH\xdc+\xf8%b")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 Bootstrap(app)
@@ -79,6 +80,14 @@ def duration_int_to_date(days: int) -> str:
     return date
 
 
+def tell_me_the_latest_study_date(user_logs: list) -> str:
+    date = extract_max_datetime(user_logs)
+    duration_of_date = date_duration_calc(date)
+
+    what_to_display = duration_int_to_date(duration_of_date)
+    return what_to_display
+
+
 @login_manager.user_loader
 def load_user(user_id):
     from data_manager import User
@@ -107,10 +116,9 @@ def home():
         print(user_scores)
 
         return render_template("index.html", user_score=user_score, user_scores=user_scores,
-                               lang_list=LANG_LIST, lang_headings=LANG_HEADINGS, date_duration_calc=date_duration_calc,
-                               StudyLog=StudyLog, extract_max_datetime=extract_max_datetime,
-                               duration_int_to_date=duration_int_to_date,
-                               page_name="ホーム")
+                               lang_list=LANG_LIST, lang_headings=LANG_HEADINGS,
+                               tell_me_the_latest_study_date=tell_me_the_latest_study_date,
+                               StudyLog=StudyLog, page_name="ホーム")
     else:
         return render_template("lp.html", page_name="「ことば」をもっと身近に。")
 
@@ -317,6 +325,29 @@ def about():
 @app.route("/how-to-use")
 def howto_use():
     return render_template("getting-ready.html", page_name="使い方")
+
+
+@app.route("/choose-quiz/<lang>/<index>")
+def choose_quiz(lang, index):
+    from data_manager import StudyLog
+
+    # リンクの第一引数がおかしかったらホームにリダイレクト
+    if not (lang in LANG_LIST):
+        return redirect(url_for("home"))
+
+    # 問題数の分だけキリトリ
+    word_from = int(index.split("-")[0])
+    word_to = int(index.split("-")[1])
+
+    # リンクの第二引数がおかしかったらホームにリダイレクト
+    if word_to < word_from or word_from < 0 or word_to < 0 or word_from > 3000 or word_to > 3000:
+        return redirect(url_for("home"))
+
+    word_from -= 1
+
+    return render_template("choose-quiz.html", StudyLog=StudyLog, page_name="クイズ選択", lang_list=LANG_LIST,
+                           lang_headings=LANG_HEADINGS, lang=lang, word_from=word_from, word_to=word_to,
+                           tell_me_the_latest_study_date=tell_me_the_latest_study_date)
 
 
 if __name__ == "__main__":
