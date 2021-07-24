@@ -4,7 +4,7 @@
     <div class="container-fluid d-flex flex-column">
         <div class="container-inner">
             <!-- Choose Language Section -->
-            <section id="choose-lang" class="main-section">
+            <section class="main-section">
                 <h2 class="page-header">{{ lang_headings[lang] }}</h2>
                 <!--------------------------------------------------------------->
                 {% for i in range(10) %}
@@ -19,10 +19,10 @@
                 </div>
                 {% endif %}
 
-                <div class="card" data-bs-toggle="collapse" data-bs-target="#{{lang}}-child-{{ section_num }}" aria-expanded="false" aria-controls="{{lang}}-child-{{ section_num }}">
+                <div class="card choose-word-card" data-bs-toggle="collapse" data-bs-target="#{{lang}}-child-{{ section_num }}" aria-expanded="false" aria-controls="{{lang}}-child-{{ section_num }}">
                     <div class="card-body">
                         {% if current_user.is_authenticated %}
-                        {% set user_logs = StudyLog.query.filter(StudyLog.user_id == current_user.id).filter(StudyLog.word_id >= 1 + i * 100 + lang_list.index(lang) * 3000).filter(StudyLog.word_id <= section_num + lang_list.index(lang) * 3000).all() %}
+                        {% set user_logs = StudyLog.query.filter(StudyLog.user_id == current_user.id).filter(StudyLog.word_id >= from_ + lang_list.index(lang) * 3000).filter(StudyLog.word_id <= section_num + lang_list.index(lang) * 3000).all() %}
                         <p>{{ from_ }}~{{ section_num }}語</p><span class="learning-date small-text">{{ tell_me_the_latest_study_date(user_logs) }}</span>
                         {% else %}
                         <p>{{ from_ }}~{{ section_num }}語</p>
@@ -35,7 +35,7 @@
                     {% set num1 = 1 + number * 10 + word_from %}
                     {% set num2 = (number + 1) * 10 + word_from %}
                     {% set index_num = (num1, num2)|join("-") %}
-                    <a class="card" href="{{ url_for('quiz', lang=lang, index=index_num) }}">
+                    <a class="card choose-word-card" href="{{ url_for('quiz', lang=lang, index=index_num) }}">
                         <div class="card-body">
                             {% if current_user.is_authenticated %}
                             {% set user_logs = StudyLog.query.filter(StudyLog.user_id == current_user.id).filter(StudyLog.word_id >= num1 + lang_list.index(lang) * 3000).filter(StudyLog.word_id <= num2 + lang_list.index(lang) * 3000).all() %}

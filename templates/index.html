@@ -51,7 +51,7 @@
                 <h2 class="small-heading">学習する</h2>
 <!--------------------------- Language List ----------------------------->
             {% for lang in lang_list %}
-                <div class="card" data-bs-toggle="collapse" data-bs-target="#{{lang}}-child" aria-expanded="false" aria-controls="{{lang}}-child">
+                <div class="card choose-word-card" data-bs-toggle="collapse" data-bs-target="#{{lang}}-child" aria-expanded="false" aria-controls="{{lang}}-child">
                     <div class="card-body">
                     {% if current_user.is_authenticated %}
                         {% set user_logs = StudyLog.query.filter(StudyLog.user_id == current_user.id).filter(StudyLog.word_id > lang_list.index(lang) * 3000).filter(StudyLog.word_id <= lang_list.index(lang) * 3000 + 3000).all() %}
@@ -74,7 +74,7 @@
                     </div>
                     {% endif %}
 
-                    <a class="card" href="{{ url_for('choose_quiz', lang=lang, index=index) }}">
+                    <a class="card choose-word-card" href="{{ url_for('choose_quiz', lang=lang, index=index) }}">
                         <div class="card-body">
                             {% if current_user.is_authenticated %}
                                 {% set user_logs = StudyLog.query.filter(StudyLog.user_id == current_user.id).filter(StudyLog.word_id >= 1 + i * 1000 + lang_list.index(lang) * 3000).filter(StudyLog.word_id <= section_num + lang_list.index(lang) * 3000).all() %}

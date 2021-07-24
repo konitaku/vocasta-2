@@ -281,11 +281,11 @@ span.project-logo {
     padding: 0 0 3rem;
 }
 
-#choose-lang .card:hover {
+.choose-word-card:hover {
     background-color: #f0f8ff;
 }
 
-#choose-lang .card-body {
+.choose-word-card .card-body {
     padding: 1rem .5rem;
     display: flex;
 }
@@ -636,6 +636,7 @@ span.project-logo {
 #getting-ready {
     color: #fff;
 }
+
 #getting-ready .goback-home {
     width: 150px;
 }

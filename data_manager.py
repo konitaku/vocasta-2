@@ -2,12 +2,15 @@ import pandas as pd
 from vocasta import db
 from flask_login import UserMixin
 from datetime import datetime
-import sqlite3
+# import sqlite3
+# import os
 
 # database = sqlite3.connect("vocasta.db")
 # df = pd.read_sql_query("SELECT*FROM word", database)
 # database.close()
 # df.to_csv("word.csv", index=False)
+
+# print(os.urandom(24))
 
 
 class StudyLog(db.Model):
