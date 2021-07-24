@@ -96,7 +96,8 @@ footer {
 } */
 
 .bg-main-color {
-    background-color: #364F6B;
+    /* background-color: #364F6B; */
+    background-color: #5bc3ff;
 }
 /* --------------- フォームのエラーメッセージ ----------------- */
 .help-block {
