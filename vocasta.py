@@ -143,8 +143,13 @@ def inspect_words(lang: str, index: str):
     if word_to < word_from or word_from < 0 or word_to < 0 or word_from > 3000 or word_to > 3000:
         return redirect(url_for("home"))
 
-    word_list = word_list[word_from - 1:word_to]
-    return render_template("inspect-words.html", word_list=word_list, lang=lang, page_name="点検")
+    # word_list = word_list[word_from - 1:word_to]
+    new_word_list = []
+    for word in word_list:
+        if word_from <= word["word_id"] <= word_to:
+            new_word_list.append(word)
+
+    return render_template("inspect-words.html", word_list=new_word_list, lang=lang, page_name="点検")
 
 
 @app.route("/quiz/<lang>/<index>")
@@ -166,8 +171,12 @@ def quiz(lang: str, index: str):
     if word_to < word_from or word_from < 0 or word_to < 0 or word_from > 3000 or word_to > 3000:
         return redirect(url_for("home"))
 
-    word_list = word_list[word_from-1:word_to]
-    return render_template("word-quiz.html", lang=lang, index=index, word_list=word_list, page_name="単語クイズ")
+    # word_list = word_list[word_from - 1:word_to]
+    new_word_list = []
+    for word in word_list:
+        if word_from <= word["word_id"] <= word_to:
+            new_word_list.append(word)
+    return render_template("word-quiz.html", lang=lang, index=index, word_list=new_word_list, page_name="単語クイズ")
 
 
 @app.route("/result", methods=["GET", "POST"])
