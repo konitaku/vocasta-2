@@ -30,8 +30,15 @@
                     </ul>
                     {% endif %}
                     <div class="d-flex">
-                        <a class="btn btn-success goback-home" type="button" href="{{url_for('home')}}">ホームへ戻る</a>
-                        <a class="btn btn-success nextquiz-btn" type="button" href="{{url_for('quiz', lang=lang, index=new_index)}}">次へ</a>
+                        <a class="btn goback-home" href="{{url_for('home')}}">
+                            ホームへ戻る
+                        </a>
+                        <a class="btn nextquiz-btn" href="{{url_for('quiz', lang=lang, index=new_index)}}">
+                            <div class="">
+
+                            </div>
+                            次へ
+                        </a>
                     </div>
 
                 </div>

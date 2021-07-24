@@ -3,7 +3,7 @@
 <main>
     <div class="container-fluid d-flex flex-column">
         <div class="container-inner">
-            
+
             <section id="word-quiz">
                 <h2 class="page-header">単語クイズ</h2>
                 <div class="time-display">
@@ -25,15 +25,15 @@
             </section>
 
             <div class="button-container">
-                <button id="check-ans" class="btn btn-light answer-btns check-ans-btn" type="button" >答え合わせをする</button>
-                <button id="memorized" class="btn btn-success answer-btns memorized-btn" type="button">覚えた</button>
-                <button id="notmemorized" class="btn btn-danger answer-btns notmemorized-btn" type="button">わからなかった</button>
+                <button id="check-ans" class="btn answer-btns check-ans-btn" type="button" >答え合わせをする</button>
+                <button id="memorized" class="btn answer-btns memorized-btn" type="button">覚えた</button>
+                <button id="notmemorized" class="btn answer-btns notmemorized-btn" type="button">わからなかった</button>
 
                 <form action="{{ url_for('result') }}" method="post">
                     <input id="result-input" type="text" name="result">
                     <input id="wordlist-input" type="text" name="word-list">
                     <input id="langname-input" type="text" name="lang-name">
-                    <input id="showresult" class="btn bg-main-color answer-btns showresult-btn" type="submit" value="結果を見る">
+                    <input id="showresult" class="btn answer-btns showresult-btn" type="submit" value="結果を見る">
                 </form>
             </div>
         </div>
@@ -178,11 +178,11 @@
         result_input.value = JSON.stringify(score_record.correct_ans);
         wordlist_input.value = JSON.stringify(word_list);
         langname_input.value = "{{lang}}";
-        
+
         showresult.addEventListener("click", function(){
             showresult.disabled = true;
             });
-        
+
         });
 
         ////////////////////////// Cound Down Timer ////////////////////////////////

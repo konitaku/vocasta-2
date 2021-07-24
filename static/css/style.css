@@ -12,6 +12,7 @@ h1, h2, h3, p, a {
     text-align: center;
     margin-bottom: 1rem;
 }
+
 #edit-section h2, #result h2, #inspection h2, #lp-main h2 {
     color: #fff;
     margin-bottom: 1.5rem;
@@ -29,9 +30,11 @@ a {
 a.card {
     color: #000;
 }
+
 .blue-link {
     color: #4ec0ff;
 }
+
 .blue-link:hover {
     color: #0ba8ff;
 }
@@ -94,16 +97,17 @@ footer {
 /* .bg-main-color {
     background-color: #0074d6;
 } */
-
 .bg-main-color {
     /* background-color: #364F6B; */
-    background-color: #5bc3ff;
+    background-color: #364F6B;
 }
+
 /* --------------- フォームのエラーメッセージ ----------------- */
 .help-block {
     color: #FC5185;
     font-size: .8rem;
 }
+
 /* ---------------------- Flash Messages ---------------------- */
 .flashes {
     margin: 0 0 1rem;
@@ -191,6 +195,7 @@ footer {
     font-weight: 300;
     text-align: center;
 }
+
 .project-logo h2 {
     font-size: .8rem;
 }
@@ -238,6 +243,7 @@ span.project-logo {
     text-align: center;
     padding: 1rem 0;
 }
+
 #progress .card-footer .d-flex {
     overflow: scroll;
 }
@@ -334,32 +340,55 @@ span.project-logo {
     font-size: .8rem;
     font-weight: 300;
     padding: .5rem;
-    border-radius: 100px;
-    border: 1px solid #999;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+.answer-btns:hover {
+    opacity: .5;
 }
 
 .check-ans-btn {
-    /* left: 35%; */
-    /* left: 0;
-    right: 0; */
     left: 50%;
     transform: translateX(-50%);
+    background: #3FC1C9;
+    border-color: #3FC1C9;
+    color: #fff;
+}
+
+.check-ans-btn:hover {
+    color: #fff;
 }
 
 .memorized-btn {
     right: 15%;
     display: none;
+    color: #fff;
+    background-color: #FC5185;
+    border-color: #FC5185;
+}
+
+.memorized-btn:hover {
+    color: #fff;
+    opacity: .7;
 }
 
 .notmemorized-btn {
     left: 12%;
     display: none;
+    background-color: #F5F5F5;
+    border-color: #c4c4c4;
 }
 
+/* .notmemorized-btn:hover {
+    opacity: .5;
+} */
 .showresult-btn {
     left: 35%;
     display: none;
     color: #fff;
+    background: #3FC1C9;
+    border-color: #3FC1C9;
 }
 
 .next-btn {
@@ -379,15 +408,19 @@ span.project-logo {
 #result-input, #wordlist-input, #langname-input {
     display: none;
 }
+
 #word-to-learn {
     font-size: 1.5rem;
 }
+
 #word-answer {
     font-size: 1rem;
 }
+
 #cd-timer {
     font-size: 1.25rem;
 }
+
 .time-display {
     margin-top: 1rem;
 }
@@ -422,8 +455,13 @@ span.project-logo {
     font-size: .8rem;
     font-weight: 300;
     padding: .5rem;
-    border-radius: 100px;
-    border: 1px solid #999;
+    border-radius: 5px;
+    border: 1px solid #FC5185;
+    background-color: #FC5185;
+}
+
+#submit:hover {
+    opacity: .7;
 }
 
 /* ------------------ Result Page -------------------- */
@@ -467,37 +505,53 @@ span.project-logo {
     font-size: .8rem;
     font-weight: 300;
     padding: .5rem;
-    border-radius: 100px;
+    border-radius: 5px;
     border-width: 1px;
     border-style: solid;
+    background-color: #3FC1C9;
+    border-color: #3FC1C9;
+    color: #fff;
     margin: 1.5rem auto 0;
 }
+
+.nextquiz-btn:hover {
+    opacity: .7;
+    color: #fff;
+}
+
 .goback-home {
-    background-color: #fc5185;
     display: block;
     width: 120px;
     font-size: .8rem;
     font-weight: 300;
     padding: .5rem;
-    border-radius: 100px;
+    border-radius: 5px;
     border-width: 1px;
     border-style: solid;
     margin: 1.5rem auto 0;
-    border-color: #fc5185;
+    color: #fff;
+    background-color: #FC5185;
+    border-color: #FC5185;
 }
+
 .goback-home:hover {
+    opacity: .7;
+    color: #fff;
     background-color: #db2e6b;
     border-color: #db2e6b;
 }
+
 /* ------------- Edit Word Page ------------- */
 .edit-icon-container {
     text-align: right;
     padding-right: .5rem;
     padding-top: .8rem;
 }
+
 .edit-icon-container .edit-icon {
     margin: 0;
 }
+
 .edit-icon {
     width: 1rem;
     height: 1rem;
@@ -517,53 +571,73 @@ span.project-logo {
     width: 250px;
     margin: 0 auto;
 }
+
 /* -------------------- ランディングページ ----------------------- */
 .main-copy-container {
     padding-top: 3rem;
 }
+
 .main-copy {
     font-size: 2.5rem;
     color: #fff;
     padding-left: 1.5rem;
 }
+
 .sub-copy {
     font-size: 1.43rem;
     color: #fff;
 }
+
 .lp-btn-container {
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: 5rem;
 }
+
 .create-account-btn {
     display: block;
     margin: 1rem auto;
     border-radius: 9999px;
     height: 48px;
-    /* background-color: #FC5185;
-    border-color: #FC5185; */
+    background-color: #FC5185;
+    border-color: #FC5185;
+    color: #fff;
 }
+
 .create-account-btn:hover {
-    /* background-color: #db2e6b;
-    border-color: #db2e6b; */
+    opacity: .7;
+    background-color: #FC5185;
+    border-color: #FC5185;
+    color: #fff;
 }
+
 .login-btn {
     display: block;
     margin: 0 auto;
     border-radius: 9999px;
     height: 48px;
-    /* background-color: transparent; */
-    /* border-color: #FC5185;
-    color: #FC5185; */
+    background-color: transparent;
+    border-color: #FC5185;
+    color: #FC5185;
     margin-bottom: 1rem;
 }
+
 .login-btn:hover {
-    /* background-color: rgba(252,81,133, 30%);
-    border-color: #FC5185; */
+    background-color: rgba(252, 81, 133, 30%);
+    border-color: #FC5185;
+    color: #fff;
 }
 
 .main-section {
     padding-top: 1rem;
+}
+
+/* --------------- 準備中ページ --------------- */
+#getting-ready {
+    color: #fff;
+}
+#getting-ready .goback-home {
+    width: 150px;
 }
 
 /* ----------------------- メディアクエリ モバイル ------------------------ */
