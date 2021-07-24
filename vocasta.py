@@ -146,7 +146,7 @@ def inspect_words(lang: str, index: str):
     # word_list = word_list[word_from - 1:word_to]
     new_word_list = []
     for word in word_list:
-        if word_from <= word["word_id"] <= word_to:
+        if word_from + LANG_LIST.index(lang) * 3000 <= word["word_id"] <= word_to + LANG_LIST.index(lang) * 3000:
             new_word_list.append(word)
 
     return render_template("inspect-words.html", word_list=new_word_list, lang=lang, page_name="点検")
@@ -174,7 +174,7 @@ def quiz(lang: str, index: str):
     # word_list = word_list[word_from - 1:word_to]
     new_word_list = []
     for word in word_list:
-        if word_from <= word["word_id"] <= word_to:
+        if word_from + LANG_LIST.index(lang) * 3000 <= word["word_id"] <= word_to + LANG_LIST.index(lang) * 3000:
             new_word_list.append(word)
     return render_template("word-quiz.html", lang=lang, index=index, word_list=new_word_list, page_name="単語クイズ")
 
