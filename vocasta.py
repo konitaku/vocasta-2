@@ -101,6 +101,7 @@ def home():
     from data_manager import StudyLog
     # print(StudyLog.query.filter_by(user_id=1).all())
     user_scores = []
+    user_score = 0
 
     for _ in LANG_LIST:
         user_scores.append(0)
@@ -115,12 +116,12 @@ def home():
             index += 1
         print(user_scores)
 
-        return render_template("index.html", user_score=user_score, user_scores=user_scores,
-                               lang_list=LANG_LIST, lang_headings=LANG_HEADINGS,
-                               tell_me_the_latest_study_date=tell_me_the_latest_study_date,
-                               StudyLog=StudyLog, page_name="ホーム")
-    else:
-        return render_template("lp.html", page_name="「ことば」をもっと身近に。")
+    return render_template("index.html", user_score=user_score, user_scores=user_scores,
+                           lang_list=LANG_LIST, lang_headings=LANG_HEADINGS,
+                           tell_me_the_latest_study_date=tell_me_the_latest_study_date,
+                           StudyLog=StudyLog, page_name="ホーム")
+    # else:
+    #     return render_template("lp.html", page_name="「ことば」をもっと身近に。")
 
 
 @app.route("/inspect/<lang>/<index>")
