@@ -524,6 +524,7 @@ span.project-logo {
 }
 
 /* --------------- Vocastaとは　ページ ---------------- */
+
 #about-first-view {
     min-height: calc(100vh - 72px);
 }
@@ -541,7 +542,7 @@ span.project-logo {
 }
 
 .section-header p {
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
 }
 
 .about-main-heading {
@@ -559,10 +560,22 @@ span.project-logo {
     max-height: 100%;
 }
 .carousel-inner {
-    height: 35vh;
+    height: 50vh;
+    /* background-color: #fff; */
+    padding: 1rem;
+    border-style: solid;
+    border-width: .05rem;
+    border-color: #fff;
+    /* border-radius: 5px; */
+    border-left: none;
+    border-right: none;
 }
 .carousel-item {
     height: 100%;
+}
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: rgb(255, 255, 255, 15%);
 }
 
 .feature-icon {
@@ -718,6 +731,12 @@ span.project-logo {
 
 .back-to-home {
     margin-top: 0;
+    margin-left: 1rem;
+}
+
+/* ホームへ戻るボタン「リンク」 */
+.back-home-link {
+    display: inline-block;
     margin-left: 1rem;
 }
 

@@ -19,16 +19,24 @@
                         <li data-bs-target="#imagesCarousel" data-bs-slide-to="0" class="active"></li>
                         <li data-bs-target="#imagesCarousel" data-bs-slide-to="1"></li>
                         <li data-bs-target="#imagesCarousel" data-bs-slide-to="2"></li>
+                        <li data-bs-target="#imagesCarousel" data-bs-slide-to="3"></li>
+                        <li data-bs-target="#imagesCarousel" data-bs-slide-to="4"></li>
                     </ol>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="about-slide-img" src="{{ url_for('static', filename='image/sample.jpg') }}" class="d-block" alt="First Image">
+                            <img class="about-slide-img" src="{{ url_for('static', filename='image/android-chrome-384x384.png') }}" class="d-block" alt="App Logo">
                         </div>
                         <div class="carousel-item">
-                            <img class="about-slide-img" src="{{ url_for('static', filename='image/ojigi_man.png') }}" class="d-block" alt="Second Image">
+                            <img class="about-slide-img" src="{{ url_for('static', filename='image/home-sample.jpg') }}" class="d-block" alt="Home Sample Image">
                         </div>
                         <div class="carousel-item">
-                            <img class="about-slide-img" src="{{ url_for('static', filename='image/android-chrome-384x384.png') }}" class="d-block" alt="Third Image">
+                            <img class="about-slide-img" src="{{ url_for('static', filename='image/quiz-sample.jpg') }}" class="d-block" alt="Quiz Sample Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="about-slide-img" src="{{ url_for('static', filename='image/quiz-sample2.jpg') }}" class="d-block" alt="Quiz Sample 2 Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="about-slide-img" src="{{ url_for('static', filename='image/result-sample.jpg') }}" class="d-block" alt="Result Image">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#imagesCarousel" role="button" data-bs-slide="prev">
@@ -43,7 +51,7 @@
                 <div class="xlarge-btn-container">
                     <a class="btn button x-large-btn btn-pink font-white d-flex justify-content-center align-items-center" href="{{url_for('register')}}">
                         <div>
-                            今すぐアカウントを作る
+                            今すぐアカウントを作る！
                         </div>
                     </a>
                 </div>
@@ -143,7 +151,16 @@
                         <h3>Q3. デザインがダサい。</h3>
                         <p class="pale-text">
                             大変ご不便をおかけ致しており、申し訳ありません。<br>開発者の力量不足です。<br>
-                            今後も改善に努めて参りますので、何卒ご容赦くださいますようお願い申し上げます。
+                            今後とも改善に努めて参りますので、何卒ご容赦くださいますようお願い申し上げます。
+                        </p>
+                    </li>
+
+                    <li>
+                        <h3>Q3. 和訳がおかしい。</h3>
+                        <p class="pale-text">
+                            現在、単語データの確認・書き換え作業を進めております。<br>
+                            主な原因は、外国語の単語データをGoogle翻訳に通して取得したものをそのまま訳語として利用しているために、不自然な日本語が混在している場合があるようです。<br>
+                            ご迷惑をおかけし、誠に申し訳ありません。
                         </p>
                     </li>
                 </ul>
