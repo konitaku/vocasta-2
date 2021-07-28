@@ -1,17 +1,25 @@
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, StringField, PasswordField
-from wtforms.validators import DataRequired, Email
+from wtforms.validators import DataRequired, Email, Length
 
 
 class RegisterForm(FlaskForm):
     name = StringField(label="ユーザーネーム", validators=[DataRequired(message="ユーザーネームを入力してください")])
-    email = StringField(label="メールアドレス", validators=[DataRequired(message="メールアドレスを入力してください"), Email()])
-    password = PasswordField(label="パスワード", validators=[DataRequired(message="パスワードを入力してください")])
+    email = StringField(label="メールアドレス", validators=[
+        DataRequired(message="メールアドレスを入力してください"), Email(message="無効なメールアドレスです")
+    ])
+
+    password = PasswordField(label="パスワード", validators=[
+        DataRequired(message="パスワードを入力してください"), Length(min=12, message="パスワードは12文字以上にしてください")
+    ])
     submit = SubmitField(label="登録")
 
 
 class LoginForm(FlaskForm):
-    email = StringField(label="メールアドレス", validators=[DataRequired(message="メールアドレスを入力してください"), Email()])
+    email = StringField(label="メールアドレス", validators=[
+                            DataRequired(message="メールアドレスを入力してください"), Email(message="無効なメールアドレスです")
+    ])
+
     password = PasswordField(label="パスワード", validators=[DataRequired(message="パスワードを入力してください")])
     submit = SubmitField(label="ログイン")
 

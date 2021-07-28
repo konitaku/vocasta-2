@@ -97,6 +97,14 @@ def load_user(user_id):
 
 
 @app.route("/")
+def lp():
+    if current_user.is_authenticated:
+        return redirect(url_for("home"))
+    else:
+        return render_template("lp.html", page_name="「ことば」をもっと身近に。")
+
+
+@app.route("/home")
 def home():
     from data_manager import StudyLog
     # print(StudyLog.query.filter_by(user_id=1).all())
@@ -114,7 +122,7 @@ def home():
             user_scores[index] = len([item for item in current_user.study_logs if item.word.lang_name == lang and
                                       item.num_of_remember != 0])
             index += 1
-        print(user_scores)
+        # print(user_scores)
 
     return render_template("index.html", user_score=user_score, user_scores=user_scores,
                            lang_list=LANG_LIST, lang_headings=LANG_HEADINGS,
@@ -189,8 +197,8 @@ def result():
         word_list = eval(request.form["word-list"])
         lang = request.form["lang-name"]
 
-        print(correct_ans)
-        print(word_list)
+        # print(correct_ans)
+        # print(word_list)
 
         word_id_list = [word.get("word_id") for word in word_list]
 
@@ -203,9 +211,13 @@ def result():
         correct_ans_id_list = [word.get("word_id") for word in correct_ans]
         correct_words = [word.get(lang) for word in correct_ans]
 
-        next_word_from = max(word_id_list) + 1
-        next_word_to = max(word_id_list) + QUIZ_LENGTH
+        next_word_from = max(word_id_list) + 1 - (LANG_LIST.index(lang) * 3000)
+        next_word_to = max(word_id_list) + QUIZ_LENGTH - (LANG_LIST.index(lang) * 3000)
         new_index = str(next_word_from) + "-" + str(next_word_to)
+
+        current_word_from = min(word_id_list) - (LANG_LIST.index(lang) * 3000)
+        current_word_to = max(word_id_list) - (LANG_LIST.index(lang) * 3000)
+        current_index = str(current_word_from) + "-" + str(current_word_to)
 
         if current_user.is_authenticated:
             for word_id in word_id_list:
@@ -213,19 +225,19 @@ def result():
                 past_log = [log_obj for log_obj in current_user.study_logs if log_obj.word_id == word_data.id]
 
                 try:
-                    print(past_log)
-                    print(past_log[0])
+                    # print(past_log)
+                    # print(past_log[0])
                     past_log = db.session.query(StudyLog).get(past_log[0].id)
-                    print(past_log.num_of_learning)
+                    # print(past_log.num_of_learning)
                     past_log.num_of_learning += 1
 
                     if word_id in correct_ans_id_list:
                         past_log.num_of_remember += 1
 
-                    print(past_log.num_of_learning)
-                    print(past_log.num_of_remember)
+                    # print(past_log.num_of_learning)
+                    # print(past_log.num_of_remember)
                     db.session.commit()
-                    print(f"StudyLog is updated :{word_id} at {datetime.utcnow()}")
+                    print(f"[StudyLog is updated] User:{current_user.name}, word: {word_id} at {datetime.utcnow()}")
 
                 except IndexError:
                     study_log = StudyLog(user_id=current_user.id, word_id=word_data.id)
@@ -233,13 +245,14 @@ def result():
                         study_log.num_of_remember = 1
                     db.session.add(study_log)
                     db.session.commit()
-                    print(f"StudyLog is created :{word_id} at {datetime.utcnow()}")
+                    print(f"[StudyLog is created] User: {current_user.name}, word: {word_id} at {datetime.utcnow()}")
 
         return render_template("result.html",
                                correct_words=correct_words,
                                word_list=reloaded_word_list,
                                lang=lang,
                                new_index=new_index,
+                               current_index=current_index,
                                page_name="結果")
     
     return redirect(url_for("home"))
@@ -254,18 +267,15 @@ def register():
         email = form.email.data
         password = form.password.data
         if not db.session.query(User).filter_by(email=email).first():
-            if len(password) >= 12:
-                new_user = User()
-                new_user.name = name
-                new_user.email = email
-                new_user.password = generate_password_hash(password)
-                db.session.add(new_user)
-                db.session.commit()
-                login_user(new_user)
-                flash(f"ようこそ、{name}さん", "success")
-                return redirect(url_for("home"))
-            else:
-                flash("パスワードは12文字以上にしてください")
+            new_user = User()
+            new_user.name = name
+            new_user.email = email
+            new_user.password = generate_password_hash(password)
+            db.session.add(new_user)
+            db.session.commit()
+            login_user(new_user)
+            flash(f"ようこそ、{name}さん", "success")
+            return redirect(url_for("home"))
     return render_template("register.html", form=form, page_name="アカウント作成")
 
 
@@ -329,12 +339,12 @@ def edit_word(word_id: str):
 
 @app.route("/about")
 def about():
-    return render_template("getting-ready.html", page_name="Vocastaについて")
+    return render_template("about.html", page_name="Vocastaとは")
 
 
-@app.route("/how-to-use")
-def howto_use():
-    return render_template("getting-ready.html", page_name="使い方")
+# @app.route("/how-to-use")
+# def howto_use():
+#     return render_template("getting-ready.html", page_name="使い方")
 
 
 @app.route("/choose-quiz/<lang>/<index>")

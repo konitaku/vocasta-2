@@ -7,11 +7,14 @@
             <section id="word-quiz">
                 <h2 class="page-header">単語クイズ</h2>
                 <div class="time-display">
-                    <p id="cd-timer" class="pale-text">10.00</p>
+                    <p id="cd-timer" class="pale-text">05:00</p>
                 </div>
-                <div class="progress">
-                    <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
+                    <div class="progress">
+                        <div id="progress-bar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <p class="small-text pale-text text-center">
+                        <span id="wordindex-now"></span>/{{word_list | length}}問中
+                    </p>
 
                 <div class="card card-body word-card">
                     <div class="table-container">
@@ -25,15 +28,15 @@
             </section>
 
             <div class="button-container">
-                <button id="check-ans" class="btn answer-btns check-ans-btn" type="button" >答え合わせをする</button>
-                <button id="memorized" class="btn answer-btns memorized-btn" type="button">覚えた</button>
-                <button id="notmemorized" class="btn answer-btns notmemorized-btn" type="button">わからなかった</button>
+                <button id="check-ans" class="btn button btn-150 btn-blue btn-absolute-center answer-btns check-ans-btn font-white" type="button" >答え合わせをする</button>
+                <button id="memorized" class="btn button btn-150 btn-pink answer-btns memorized-btn font-white" type="button">覚えた</button>
+                <button id="notmemorized" class="btn button btn-150 btn-gray answer-btns notmemorized-btn" type="button">わからなかった</button>
 
                 <form action="{{ url_for('result') }}" method="post">
                     <input id="result-input" type="text" name="result">
                     <input id="wordlist-input" type="text" name="word-list">
                     <input id="langname-input" type="text" name="lang-name">
-                    <input id="showresult" class="btn answer-btns showresult-btn" type="submit" value="結果を見る">
+                    <input id="showresult" class="btn button btn-150 btn-blue btn-absolute-center answer-btns showresult-btn font-white" type="submit" value="結果を見る">
                 </form>
             </div>
         </div>
@@ -76,8 +79,9 @@
     // スコアオブジェクトを生成
     const score_record = new ScoreRecord(current_word);
 
-    // プログレスバーを取得
+    // プログレスバーと現在の問題番号表示場所を取得
     var progress_bar = document.getElementById("progress-bar");
+    var wordindex_now = document.getElementById("wordindex-now");
 
     // 言語の出力先のpタグを取得
     var word_to_learn = document.getElementById("word-to-learn");
@@ -87,6 +91,7 @@
 
     // 単語を出力
     word_to_learn.appendChild(word_text);
+    wordindex_now.appendChild(document.createTextNode(score_record.index));
 
     // 「答え合わせをする」ボタンと,答えを表示するpタグを取得
     var check_ans = document.getElementById("check-ans");
@@ -126,8 +131,6 @@
 
     // 次の単語を表示する時のfunctionを定義
     function nextWord () {
-        // プログレスバーの長さを変更
-        progress_bar.style.width = `${1/word_list.length * 100 * score_record.index}%`;
 
         // 下層ボタンの両方を非表示
         memorized.style.display = "none";
@@ -135,6 +138,13 @@
 
         // 次の単語を取得
         score_record.current_word = word_list[score_record.index];
+
+        // プログレスバーの長さを変更
+        progress_bar.style.width = `${1/word_list.length * 100 * score_record.index}%`;
+
+        // 問題番号を変更
+        wordindex_now.innerHTML = "";
+        wordindex_now.appendChild(document.createTextNode(score_record.index));
 
         if (score_record.index < word_list.length){
             // 次の単語を表示

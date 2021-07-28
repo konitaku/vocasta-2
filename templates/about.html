@@ -1,0 +1,172 @@
+{% include "header.html" %}
+
+<main>
+    <section id="about-first-view" class="about-sections bg-main-color">
+        <div class="container-fluid">
+            <div class="container-inner">
+                <!-- セクションヘッダー -->
+                <header class="section-header font-white">
+                    <h1 class="brand-logo main-copy about-main-heading">Vocasta</h1>
+
+                    <p class="about-sub-heading text-center">
+                        5つの言語の頻出単語3000語が<br>
+                        これひとつでまるっと学べる！
+                    </p>
+
+                </header>
+                <div id="imagesCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-bs-target="#imagesCarousel" data-bs-slide-to="0" class="active"></li>
+                        <li data-bs-target="#imagesCarousel" data-bs-slide-to="1"></li>
+                        <li data-bs-target="#imagesCarousel" data-bs-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="about-slide-img" src="{{ url_for('static', filename='image/sample.jpg') }}" class="d-block" alt="First Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="about-slide-img" src="{{ url_for('static', filename='image/ojigi_man.png') }}" class="d-block" alt="Second Image">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="about-slide-img" src="{{ url_for('static', filename='image/android-chrome-384x384.png') }}" class="d-block" alt="Third Image">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#imagesCarousel" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#imagesCarousel" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
+                </div>
+                <div class="xlarge-btn-container">
+                    <a class="btn button x-large-btn btn-pink font-white d-flex justify-content-center align-items-center" href="{{url_for('register')}}">
+                        <div>
+                            今すぐアカウントを作る
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-features" class="about-sections">
+        <div class="container-fluid">
+            <p class="small-heading text-center">Vocastaの</p>
+            <h2 class="page-header">5つの特徴</h2>
+            <div class="d-md-flex flex-wrap">
+                <div class="feature-card card card-body">
+                    <img class="feature-icon" src="../static/image/feature1.jpeg" alt="feature1">
+                    <h3 class="feature-heading">やる気が続く、学習記録</h3>
+                    <p class="feature-discription">自分の成長を実感しやすいから、継続できる</p>
+                </div>
+
+                <div class="feature-card card card-body">
+                    <img class="feature-icon" src="../static/image/feature4.jpeg" alt="feature1">
+                    <h3 class="feature-heading">1回10問から</h3>
+                    <p class="feature-discription">「スキマ時間」にサクサク取り組める分量</p>
+                </div>
+
+                <div class="feature-card card card-body">
+                    <img class="feature-icon" src="../static/image/feature2.jpeg" alt="feature2">
+                    <h3 class="feature-heading">復習に便利なリザルト画面</h3>
+                    <p class="feature-discription">クイズの後は一覧で確認、素早く復習</p>
+                </div>
+
+                <div class="feature-card card card-body">
+                    <img class="feature-icon" src="../static/image/feature5.jpeg" alt="feature1">
+                    <h3 class="feature-heading">全5ヶ国語、15,000単語</h3>
+                    <p class="feature-discription">
+                        英語、フランス語、中国語、スペイン語、韓国語それぞれの頻出単語3000語を収録
+                        <span class="small-heading">各言語のデータはWiktionaryの
+                            <a href="https://en.wiktionary.org/wiki/Wiktionary:Frequency_lists" target="blank_">Frequency list <i class="far fa-external-link"></i></a>
+                            より引用
+                        </span>
+                    </p>
+
+                </div>
+
+                <div class="feature-card card card-body">
+                    <img class="feature-icon" src="../static/image/feature3.jpeg" alt="feature3">
+                    <h3 class="feature-heading">5秒間のカウントダウン</h3>
+                    <p class="feature-discription">1問1問、緊張感を持って取り組めるカウントダウン機能付き</p>
+                </div>
+
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="action-fook about-sections bg-main-color">
+
+        <div class="container-fluid">
+            <div class="container-inner">
+                <h2 class="page-header font-white">便利な機能いろいろ入って、無料！</h2>
+                <div class="xlarge-btn-container">
+                    <a class="btn button x-large-btn btn-pink font-white d-flex justify-content-center align-items-center" href="{{url_for('register')}}">
+                        <div>
+                            Vocastaをはじめる
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="q-and-a" class="about-sections">
+
+        <div class="container-fluid">
+            <div class="container-inner">
+                <h2 class="page-header">よくあるご質問</h2>
+                <ul class="q-a-list">
+                    <li>
+                        <h3>Q1. アカウントを作らないとはじめられませんか？</h3>
+                        <p class="pale-text">
+                            いいえ、一部機能を除いてご利用いただけます。<br>
+                            具体的には、アカウント登録をされない場合、本サービスのメイン機能である学習記録をつける機能がご利用いただけません。
+                            それでもよろしければ、<a href="{{ url_for('home') }}">こちら</a>からお試しください。
+                        </p>
+                    </li>
+
+                    <li>
+                        <h3>Q2. 本当に「無料」なんですか？</h3>
+                        <p class="pale-text">
+                            はい。クレジットカードの登録はなく、皆さんからは一銭もいただきません。<br>
+                            それは、知識を求める人には等しくその機会が与えられるべきだという開発者の信念に基づいているからです。
+                        </p>
+                    </li>
+
+                    <li>
+                        <h3>Q3. デザインがダサい。</h3>
+                        <p class="pale-text">
+                            大変ご不便をおかけ致しており、申し訳ありません。<br>開発者の力量不足です。<br>
+                            今後も改善に努めて参りますので、何卒ご容赦くださいますようお願い申し上げます。
+                        </p>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </section>
+    <section class="action-fook about-sections bg-main-color">
+
+        <div class="container-fluid">
+            <div class="container-inner">
+                <h2 class="page-header font-white">さあ、Vocastaをはじめよう</h2>
+                <div class="xlarge-btn-container">
+                    <a class="btn button x-large-btn btn-pink font-white d-flex justify-content-center align-items-center" href="{{url_for('register')}}">
+                        <div>
+                            アカウント作成
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+{% include "footer.html" %}

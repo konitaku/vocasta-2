@@ -1,5 +1,4 @@
 {% include "header.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
 
 <main class="bg-main-color">
     <div class="container-fluid d-flex flex-column">
@@ -7,24 +6,27 @@
             <section id="lp-main">
                 <!-- <h2 class="page-header">Vocasta</h2> -->
                 <div class="main-copy-container">
-                    <p class="main-copy">全5ヶ国語、<br>計15,000単語を<br>無料で。</p>
+                    <p class="main-copy font-white">全5ヶ国語、<br>計15,000単語を<br>無料で。</p>
+                </div>
+                <div>
+
+                    <div class="xlarge-btn-container">
+                        <p class="sub-copy font-white">Vocastaをはじめよう</p>
+                        <a class="btn button x-large-btn btn-pink font-white d-flex justify-content-center align-items-center" href="{{url_for('register')}}">
+                            <div>
+                                アカウント作成
+                            </div>
+                        </a>
+                        <a class="btn button x-large-btn login-btn d-flex justify-content-center align-items-center" href="{{url_for('login')}}">
+                            <div>
+                                ログイン
+                            </div>
+                        </a>
+
+                        <a class="blue-link" href="{{ url_for('about') }}">Vocastaとは&raquo;</a>
+                    </div>
                 </div>
 
-                <div class="lp-btn-container">
-                    <p class="sub-copy">Vocastaをはじめよう</p>
-                    <a class="btn create-account-btn d-flex justify-content-center align-items-center" href="{{url_for('register')}}">
-                        <div>
-                            アカウント作成
-                        </div>
-                    </a>
-                    <a class="btn login-btn d-flex justify-content-center align-items-center" href="{{url_for('login', lang=lang, index=new_index)}}">
-                        <div>
-                            ログイン
-                        </div>
-                    </a>
-
-                    <a class="blue-link" href="{{ url_for('about') }}">Vocastaとは&raquo;</a>
-                </div>
             </section>
         </div>
 

@@ -29,11 +29,15 @@
         <!--  d-flex justify-content-between aline-self-center -->
         <div class="container-fluid">
             <nav class="navbar navbar-dark">
+
+                {% if not page_name == "Vocastaとは" %}
                 <!-- Brand Logo -->
                 <a class="navbar-brand" href="{{ url_for('home') }}">
                     <h1 class="brand-logo">Vocasta</h1>
                 </a>
-
+                {% else %}
+                <div style="color: transparent">placeholder</div>
+                {% endif %}
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -42,26 +46,29 @@
                     <ul class="navbar-nav bg-main-color">
                         {% if not current_user.is_authenticated %}
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('about') }}">Vocastaとは</a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('register') }}">アカウント作成</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('login') }}">ログイン</a>
                         </li>
+
                         {% else %}
+
                         <li class="nav-item">
                             <a class="nav-link" href="#">{{current_user.name}}</a>
                         </li>
+
                         {% endif %}
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('home') }}">ホーム</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('about') }}">Vocastaとは</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('howto_use') }}">使い方</a>
-                        </li>
+                        
                         {% if current_user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{url_for('logout')}}">ログアウト</a>

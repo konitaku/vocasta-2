@@ -4,21 +4,27 @@
 <main class="bg-main-color">
     <div class="container-fluid d-flex flex-column">
         <div class="container-inner">
-            <section id="login-section">
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul class="flashes font-white">
+                {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+            <section id="login-section" class="font-white">
                 <h2 class="page-header">アカウント作成</h2>
+                <form action="" method="post" role="form" novalidate>
+                    {{ form.hidden_tag() }}
+                    {{ wtf.form_errors(form, hiddens="only") }}
 
-                <!-- Flash Messages -->
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                <ul class=flashes>
-                    {% for category, message in messages %}
-                    <li class="{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                {% endwith %}
-
-                {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "success"}) }}
+                    {{ wtf.form_field(form.name) }}
+                    {{ wtf.form_field(form.email) }}
+                    {{ wtf.form_field(form.password) }}
+                    {{ wtf.form_field(form.submit, class="btn button btn-150 btn-pink font-white") }}
+                </form>
             </section>
         </div>
 

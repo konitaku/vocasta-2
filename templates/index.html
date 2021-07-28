@@ -1,25 +1,28 @@
 {% include "header.html" %}
-<main>
+<main class="bg-main-color">
 <!-- <main class="bg-main-color"> -->
     <div class="container-fluid d-flex flex-column">
         <div class="container-inner">
             <!-- Progress Board -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <ul class="flashes font-white">
+                {% for category, message in messages %}
+                <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
             <section id="progress">
 
-            <h2 class="page-header">ホーム</h2>
-                {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                <ul class=flashes>
-                    {% for category, message in messages %}
-                    <li class="{{ category }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-                {% endwith %}
+            <h2 class="page-header font-white">Home</h2>
+
                 <div class="card">
                     <section class="progress-board card-body d-flex justify-content-between">
                         <header class="progress-header">
-                            <p>あなたが覚えた単語数</p>
+                                <div class="table-container">
+                                    <p class="table-cell">あなたが覚えた単語数</p>
+                                </div>
                         </header>
 
                         <div class="total-score-box">
@@ -48,7 +51,7 @@
             </section>
             <!-- Choose Language Section -->
             <section id="choose-lang">
-                <h2 class="small-heading">学習する</h2>
+                <h2 class="small-heading font-white">学習する</h2>
 <!--------------------------- Language List ----------------------------->
             {% for lang in lang_list %}
                 <div class="card choose-word-card" data-bs-toggle="collapse" data-bs-target="#{{lang}}-child" aria-expanded="false" aria-controls="{{lang}}-child">
@@ -69,7 +72,7 @@
                     {% set index = (1+i*1000, section_num) | join("-") %}
                     {% if current_user.is_authenticated and current_user.id == 1 %}
                     <div class="edit-icon-container">
-                        <span class="pale-text small-text">{{index}}</span>
+                        <span class="text-white small-text">{{index}}</span>
                         <a class="fal fa-edit edit-icon" href="{{ url_for('inspect_words', lang=lang, index=index) }}"></a>
                     </div>
                     {% endif %}
