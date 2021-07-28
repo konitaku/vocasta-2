@@ -4,7 +4,7 @@
     <div class="container-fluid d-flex flex-column">
         <div class="container-inner">
             <!-- Choose Language Section -->
-            <a class="font-white btn button btn-blue btn-120 back-to-home" href="{{ url_for('home') }}">ホームに戻る</a>
+            <a class="font-white" href="{{ url_for('home') }}">&laquo;ホームに戻る</a>
             <section class="main-section">
                 <h2 class="page-header font-white">{{ lang_headings[lang] }}</h2>
                 <!--------------------------------------------------------------->
@@ -15,7 +15,7 @@
                 {% set index = (from_, section_num) | join("-") %}
                 {% if current_user.is_authenticated and current_user.id == 1 %}
                 <div class="edit-icon-container">
-                    <span class="font-white small-text">{{index}}</span>
+                    <span class="font-white small-text">{{index}}語</span>
                     <a class="fal fa-edit edit-icon" href="{{ url_for('inspect_words', lang=lang, index=index) }}"></a>
                 </div>
                 {% endif %}
